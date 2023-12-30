@@ -1,0 +1,396 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+
+\title{Artificial Intelligence Enabled Radio Propagation
+for Communications—Part I: Channel
+Characterization and Antenna-Channel Optimization\\
+\thanks{COEP Tech University .}
+}
+
+\author{\IEEEauthorblockN{Arnav Prasad}
+\IEEEauthorblockA{\textit{Computer Engineering, College of Engineering, Pune} \\
+\textit{Autonomous}\\
+Pune, India \\
+arnav.prasad.ap@gmail.com}
+\and
+\IEEEauthorblockN{Arnav Prasad}
+\IEEEauthorblockA{\textit{Computer Engineering, College of Engineering, Pune} \\
+\textit{Autonomous}\\
+Pune, India \\
+arnav.prasad.ap@gmail.com}
+
+ }
+
+\maketitle
+
+
+
+
+\section{abstract}
+To provide higher data rates, as well as better
+coverage, cost efficiency, security, adaptability, and scalability,
+the 5G and beyond 5G networks are developed with various
+artificial intelligence (AI) techniques. In this two-part article,
+we investigate\cite{w11} the application of AI and, in particular, machine
+learning (ML) to the study of wireless propagation channels.
+It first provides a comprehensive overview of ML for channel
+characterization and ML-based antenna–channel optimization in
+this first part, and then, it gives a state-of-the-art literature review
+of channel scenario identification and channel modeling in Part
+II. Fundamental results and key concepts of ML for communi-
+cation networks are presented, and widely used ML methods for
+channel data processing, propagation channel estimation, and
+characterization are analyzed and compared. A discussion of
+challenges and future research directions for ML-enabled next-
+generation networks of the topics covered in this part rounds off
+this article.
+
+
+
+
+\begin{IEEEkeywords}
+Human Resource, Competence, Training Programs, APQP ( Advanced Product Quality 
+Planning) , Information Management, QMS (Quality Management System), Skill Analysis, Learning Management, Customer Relationship Management (CRM), Database 
+Management
+\end{IEEEkeywords}
+
+\section{Introduction}
+      
+HE dramatic increase of the numbers of wireless users
+and wireless applications brings new demand and chal-
+lenges for wireless comm\cite{222}unication networks. The 5G and
+beyond 5G (B5G) networks are expected to provide higher
+data rates, as well as better coverage, cost efficiency, security,
+adaptability, and scalability. Since 2020, 5G commu-
+nication has begun to be deployed worldwide, whereas
+studies of sixth-generation (6G) wireless communication net-
+works have started in academic and industrial research labs
+to further enhance MBB, expand the application and coverage
+of the Internet of Things (IoT), and make networks/devices
+more intelligent. These new application scenarios give the
+6G network a series of new performance requirements:
+10–100 million devices connections\cite{666} with the peak data rate
+of 1–10 TB/s; the mobility that needs to be supported rises to
+higher than 1000 km/h to accommodate ultrahigh-speed train
+(uHST), unmanned aerial vehicle (UAV), and satellites;
+latencies need to be reduced to fractions of 1 ms to account
+for tactile Internet and other real-time control applications; and
+reliability of five or even seven times has to be achieved for
+mission-critical applications. Also, to provide global coverage,
+6G wireless networks will expand from terrestrial communi-
+cation networks to space–air–ground–sea integrated networks.
+The study of propagation channels is a fundamental aspect
+of any wireless communication system design, network
+optimization, and performance evaluation. Therefore,
+to realize 6G networks to meet the requirements above,
+the corresponding wireless channels need to be thoroughly
+studied. However, the massive—in terms of number of
+devices, number of antennas, bandwidth, and so on—
+scenarios not only pose a challenge in performing dedicated
+measurement campaigns but also lead to massive amounts of
+data that need to be processed and analyzed . Classical
+techniques for such analysis, e.g., parameter estimation,
+tracking, clustering, and characterization, are generally less
+suited for such large amounts of data, either because of the
+resulting overhead or because they might miss important
+relationships within the data.
+On the other hand, artificial intelligence (AI) has been
+developed to “simulate the human intelligence\cite{100} processes
+by machines, especially computer systems” . Machine
+learning (ML) is a branch of AI that enables machines to learn
+from a massive amount of data and make decisions and/or
+perform actions accordingly without being given any specific
+commands. With the help of continually increasing computing
+power, ML techniques have achieved great success in big
+data processing for many applications, e.g., image processing,
+natural language processing, and data mining. Consequently,
+ML techniques have also been widely applied to various
+problems in communications networks and are expected
+to be an integral part of next-generation communication
+networks.
+
+
+\section{AI-/ML-A SSISTED O PTIMIZATION AND M ODELING FOR A NTENNA D ESIGN TO I MPROVE R ADIO P ROPAGATION}
+he simplest method to use channel information to adapt
+antenna properties for improved antenna–channel interaction
+is to rely on an antenna array to provide different spatial
+properties of the antenna system. Specifically, one can select
+between a finite set of spatial filters, made possible by either
+turning on/off different antenna elements (in the case of trans-
+mit antenna selection (TAS) ,fixed beams,
+or antenna tilt, selecting different preformed beams covering
+the horizontal plane, or steering the beam in elevation.
+In a generic sense, this approach is about connecting the
+antenna array outputs to the transmitter or receiver through
+a beamforming network, where the array weights can be set
+according to the desired selection functionality.
+
+\paragraph{}
+Among these applications, TAS has received the most
+attention in the literature , due to the topic being
+of interest since the early days of multiantenna systems.
+The basic idea of TAS is to devise an algorithm to select P
+out of MT transmitting antennas (P < MT ) to be connected
+to the RF chains such that the best possible end-to-end link
+performance is achieved. This technique is motivated both by
+the reduced hardware cost due to the need for fewer RF chains
+and the modest loss of performance under some conditions.
+
+
+\paragraph{}
+The interest in applying ML to TAS is not limited to single-
+user MIMO, but it has also been considered for multiuser
+massive MIMO systems . In , the self-supervised
+learning-based Monte Carlo tree search (MCTS) method is
+proposed to solve the antenna selection problem using channel
+capacity as the key performance indicator. The components
+in the TAS system model are mapped to the basic elements
+of MCTS (action, tree state, and reward). Linear regression
+is used to obtain channel features and provide prediction
+to MCTS, facilitating the self-supervised learning process.
+Simulation results show high search efficiency with near-
+optimal performance, with the BER performance giving a 1 dB
+gain over the greedy search selection method. The proposed
+method also achieves a similar near-optimal BER performance
+as the search-based branch and bound (BAB) method,
+but with 50
+
+
+
+
+%%%%%
+\section{Computer Vision-Based Cluster Identification}
+Computer Vision-Based Cluster Identification: Before
+automatic cluster identification methods were devised, MPC
+clusters were identified by human inspection as in,
+\cite{111}. Despite the somewhat subjective operation model
+in human-eyeball clustering, there are still some basic criteria
+that are generally applied, including the shape of the potential
+cluster, the distribution pattern of the MPCs’ delay and angle,
+and the power distribution of all MPCs. All these principles
+are visual-based, and hence, it is also possible to use an image
+processing method to recognize the MPC cluster. Inspired
+by this, some studies focus on computer vision-based cluster
+identification. With the consideration of the delay behaviors
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|} % Specify the number of columns and their alignment
+\hline
+\textbf{Category} & \textbf{Typical Algorithm} & \textbf{Parameter Type} & \textbf{Existing Works} \\ % Table header
+\hline
+	Traditional Mehod & Barlett A & PAS & [62] \\ % Table content
+	Traditional Mehod & ESPRIT & Signal angle & [63] \\ % Table content
+	Traditional Mehod & SAGE & MPC Joint & [64] \\ % Table content
+	Traditional Mehod& RiMAX & DMC & [65] \\ % Table content
+	Traditional Mehod& SVM & Path Loss & [66] \\ % Table content
+	ML-based method & ANN & Channel escess & [67] \\ % Table content
+	ML-based method & SVM-PCA & AoA and ASA & [68] \\ % Table content
+	 ML-based method&Bayesian Learning & DoA & [69] \\ % Table content
+	ML-based method & RVM C & DoA & [70] \\ % Table content
+	ML-based method & EKF & MPC Joint & [71] \\ % Table content
+\hline
+\end{tabular}
+\caption{Summary of Channel Parameter Estimation}
+\label{tab:example}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{ieee-2.jpeg}
+    \caption{Example Image}
+    \label{fig:example}
+\end{figure}
+
+
+
+
+of the MPCs, a Hough transform-based clustering algorithm
+is present in for vehicle-to-vehicle (V2V) channels,
+which exploits the Hough transform \cite{w11} to recognize the
+trajectory of MPC in the delay domain and merges the
+recognized trajectory into clusters. A PAS-based clustering
+and tracking (PASCT) algorithm without any high-resolution
+parameter extraction is proposed in; it introduces
+the maximum-between-class-variance method  to sepa-
+rate the potential cluster groups from the background noise and
+further divides the clusters by using the density-peak-search
+method . The PASCT algorithm identifies the clusters
+directly from the PAS, which can be fast obtained by applying
+the Bartlett beamformer. A similar method is also adopted
+in , where the cluster is recognized from the PAS by
+using image denoising, coarse-grained segmentation, and fine-
+grained segmentation.
+The vision-based cluster identification follows an intuitive
+approach and thus can provide identification results that
+conform to human observation and benefit from the rapid
+development of computer vision science.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{ieee-3.jpeg}
+    \caption{Illustration of the evolving-based cluster identification}
+    \label{fig:example}
+\end{figure}
+
+
+
+In summary, the ML-based cluster identification solutions
+show a significant ability to identify the MPC clusters for
+further analyzing and modeling, and each identification solu-
+tion has its own advantages and limitations. Considering that
+there is no identification ground truth of the measurement data,
+how to properly quantify the performance of the identification
+method is still a challenging issue. \cite{66}One way is by evaluating
+the identification method by using synthetic data generated
+from a cluster-based channel model, where the identification
+ground truth of the synthetic data can be easily acquired.
+Another solution is to use the statistical figure of merits
+for data clustering algorithms, e.g., the Calinski–Harabasz
+index , generalized Dunn’s (GD) index, Xie–Beni
+(XB) index , or Davies–Bouldin index . Several
+measuring methods, including the indices above, are compared
+in , where the XB index and GD index generally show
+good performance for evaluating the MPC cluster identifi-
+cation result. Table III summarizes the existing clustering
+methods for wireless channels.
+
+
+
+
+\section{ML-Based Beam Selection and Antenna Tilt Optimization}
+Using ML to determine antenna tilt for coverage and
+interference optimization is also a popular subject in the
+literature . In simple terms, a suitable antenna
+tilt can improve signal reception within a cell and reduce
+interference toward other cells, leading to a higher signal-to-
+interference-plus-noise ratio (SINR) received by the users and
+increased sum data rate in the network. However, the
+traditional fixed-tilt strategy is not adequate for the complex
+coverage and interference problem in heterogeneous networks
+(HetNets). In \cite{55} a distributed reinforcement learning
+algorithm is proposed, which does not need a base station or
+network-wide knowledge of hotspot locations. In the simula-
+tion results in that paper, the Boltzmann exploration algorithm
+can achieve convergence to a near-optimal solution within
+limited iterations and improve the throughput fairness by 45
+56 fixed strategies. It is shown in that distributed rein-
+forcement learning is also attractive for the antenna tilting
+for self-optimization of the RAN, even for homogeneous
+networks. Simulation results show a 30
+rate in an urban scenario when the tilt angle is optimized
+
+
+\section{Data-Driven Design of Antenna Patterns}
+To benefit more from channel information than aiding in
+the selection of antenna/beam/tilt, the channel data can be
+more directly utilized in optimizing antenna–channel inter-
+action to improve system performance. Since \cite{44}optimizing
+For cluster recognition/extraction, most of the existing
+works rely on unsupervised clustering algorithms, e.g.,
+K-means or fuzzy-C-means. However, the unsupervised algo-
+rithms generally rely on preset parameters, e.g., the number
+and the position of initial cluster-centroids. Thus, the current
+clustering algorithm requires different presettings for different
+channel data, which requires extensive manual adjustment to
+maintain the clustering accuracy for nonstationary channels.
+On the other hand, the ANN-based DL shows great flexibility
+for the applications of target recognition and has already been
+extended to solve the clustering problem , which
+is highly related to the MPC’s cluster recognition. Neverthe-
+less, the accuracy of the DL-based cluster recognition is not
+increased as expected compared to the existing unsupervised
+clustering methods. Therefore, it requires more studies on
+how to further improve the accuracy and efficiency of the
+DL-based clustering methods. At the same time, the possibility
+of tracking joint clustering of time-varying MPCs also requires
+further investigation.antenna–channel interaction is mainly about “far-field match-
+ing,” one can design the antenna pattern for some desired
+properties
+
+
+\section{DL-Based Cluster Identification}
+For cluster recognition/extraction,\cite{33} most of the existing
+works rely on unsupervised clustering algorithms, e.g.,
+K-means or fuzzy-C-means. However, the unsupervised algo-
+rithms generally rely on preset parameters, e.g., the number
+and the position of initial cluster-centroids. Thus, the current
+clustering algorithm requires different presettings for different
+channel data, which requires extensive manual adjustment to
+maintain the clustering accuracy for nonstationary channels.
+On the other hand, the ANN-based DL shows great flexibility
+for the applications of target recognition and has already been
+extended to solve the clustering problem , which
+is highly related to the MPC’s cluster recognition. Neverthe-
+less, the accuracy of the DL-based cluster recognition is not
+increased as expected compared to the existing unsupervised
+clustering methods. Therefore, it requires more studies on
+how to further improve the accuracy and efficiency of the
+DL-based clustering methods. At the same time, the possibility
+of tracking joint clustering of time-varying MPCs also requires
+further investigation.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{ieee-1.jpeg}
+    \caption{Example Image}
+    \label{fig:example}
+\end{figure}
+
+\section{AI-Based Applications for mmWave/TH z-Band Communications}
+Channel measurements\cite{22} (especially in mmWave and THz
+band) are often accompanied by maddening time consumption,
+engineering problems, and capital costs. The ML method
+needs training data, and reliable training data should come
+from the measurements in actual scenarios. In this sense, data
+acquisition is the bottleneck of many ML-based applications.
+Admittedly, some simulation methods can generate synthetic
+training data, but the simulation methods themselves also need
+measurement data for evaluation and verification. Hence, con-
+ducting sufficient measurement campaigns to support AI-based
+applications is one challenging aspect in the future for
+mmWave/THz channels. Meanwhile, the mmWave/THz chan-
+nels with the ultrawideband and ultramassive MIMO have
+shown some new properties, e.g., channel sparsity, chan-
+nel hardening, and nonstationarity in time/spatial/frequency
+domains. These new channel properties may significantly
+affect channel data processing and have not been considered
+yet in the existing AI-based applications, e.g., channel sparsity
+property may contribute to cluster identification; channel hard-
+ening may improve the scenario identification. How to exploit
+new channel properties to improve the efficiency, accuracy,
+and robustness of AI-based applications in communications
+still requires further investigation
+
+\section{CONCLUSION}
+AI techniques have become a necessary tool to develop
+the next-generation communication network. In this arti-
+cle, we provide a comprehensive overview of AI-enabled
+data processing for propagation channel studies, includ-
+ing channel parameter estimation and characterization and
+antenna–channel optimization in Part I, whereas the scenario
+identification and channel modeling/prediction are covered
+in Part II . This article demonstrates the early results
+of the related works and illustrates the typical AI/ML-based
+solutions for each topic. Based on the state of the art, the
+future challenges of AI/ML-based channel data processing
+techniques are given as well.
+
+
+\bibliographystyle{IEEEtran}  % Choose an appropriate IEEE bibliography style
+\bibliography{i}
+
+\end{document}
